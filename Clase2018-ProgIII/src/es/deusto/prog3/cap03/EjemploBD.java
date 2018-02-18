@@ -13,44 +13,39 @@ import java.sql.Statement;
  */
 public class EjemploBD {
 
-  public static void main(String[] args) throws ClassNotFoundException
-  {
-    // Carga el sqlite-JDBC driver usando el cargador de clases
-    Class.forName("org.sqlite.JDBC");
+	public static void main(String[] args) throws ClassNotFoundException {
 
-    Connection connection = null;
-    try
-    {
-      // Crear una conexión de BD
-      connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
-      Statement statement = connection.createStatement();
-      statement.setQueryTimeout(30);  // poner timeout 30 msg
+		// Carga el sqlite-JDBC driver usando el cargador de clases
+		Class.forName("org.sqlite.JDBC");
 
-      statement.executeUpdate("drop table if exists person");
-      statement.executeUpdate("create table person (id integer, name string)");
-      statement.executeUpdate("insert into person values(1, 'leo')");
-      statement.executeUpdate("insert into person values(2, 'yui')");
-      ResultSet rs = statement.executeQuery("select * from person");
-      while(rs.next())
-      {
-        // Leer el resultset
-        System.out.println("name = " + rs.getString("name"));
-        System.out.println("id = " + rs.getInt("id"));
-      }
-    } catch(SQLException e) {
-      System.err.println(e.getMessage());
-    } finally {
-      try
-      {
-        if(connection != null)
-          connection.close();
-      }
-      catch(SQLException e)
-      {
-        // Cierre de conexión fallido
-        System.err.println(e);
-      }
-    }
-  }
-  
+		Connection connection = null;
+		try {
+			// Crear una conexión de BD
+			connection = DriverManager.getConnection("jdbc:sqlite:sample.db");
+			Statement statement = connection.createStatement();
+			statement.setQueryTimeout(30);  // poner timeout 30 msg
+
+			statement.executeUpdate("drop table if exists person");
+			statement.executeUpdate("create table person (id integer, name string)");
+			statement.executeUpdate("insert into person values(1, 'leo')");
+			statement.executeUpdate("insert into person values(2, 'yui')");
+			ResultSet rs = statement.executeQuery("select * from person");
+			while(rs.next()) {
+				// Leer el resultset
+				System.out.println("name = " + rs.getString("name"));
+				System.out.println("id = " + rs.getInt("id"));
+			}
+		} catch(SQLException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			try {
+				if(connection != null)
+					connection.close();
+			} catch(SQLException e) {
+				// Cierre de conexión fallido
+				System.err.println(e);
+			}
+		}
+	}
+
 }
