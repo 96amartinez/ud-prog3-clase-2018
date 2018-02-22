@@ -65,17 +65,21 @@ public class MiniPracticaBD {
 					String com = "";
 					try {
 						// Ver si existe usuario
-						// "select * from Usuario where nick = 'admin'";
 						// Si queremos asegurar el string habría que hacer algo así...
 						// String nick = tfUsuario.getText().replaceAll( "'", "''" );
 						// ...si no, cuidado con lo que venga en el campo de entrada.
+						// "select * from Usuario where nick = 'admin'";
 						com = "select * from Usuario where nick = '" + tfUsuario.getText() + "'";
 						rs = s.executeQuery( com );
 						if (!rs.next()) {
 							// "insert into Usuario ( nick, pass ) values ('admin', 'admin')";
 							com = "insert into Usuario ( nick, pass ) values ('"+ 
 									tfUsuario.getText() +"', '" + tfPassword.getText() + "')";
-							s.executeUpdate( com );
+							System.out.println( com );
+							int val = s.executeUpdate( com );
+							if (val!=1) {
+								JOptionPane.showMessageDialog( null, "Error en inserción" );
+							}
 						} else {
 							JOptionPane.showMessageDialog( null, "Usuario ya existe" );
 						}
@@ -93,7 +97,7 @@ public class MiniPracticaBD {
 					String com = "";
 					try {
 						// Borrar usuario
-						com = "delete from Usuario where nick = '"+ tfUsuario.getText() +"'";
+						com = "delete from Usuario where nick = '"+ secu(tfUsuario.getText()) +"'";
 						s.executeUpdate( com );
 					} catch (SQLException e2) {
 						System.out.println( "Último comando: " + com );
@@ -116,6 +120,10 @@ public class MiniPracticaBD {
 		});
 	}
 
+	// Posible función de "securización" para evitar errores o ataques
+	private static String secu( String sqlInicial ) {
+		return sqlInicial.replaceAll( "'", "" );
+	}
 }
 
 
