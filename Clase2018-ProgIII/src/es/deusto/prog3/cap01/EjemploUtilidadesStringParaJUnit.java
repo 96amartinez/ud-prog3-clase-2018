@@ -39,6 +39,7 @@ public class EjemploUtilidadesStringParaJUnit {
 //		System.out.println( wrapString( prueba, 3 ) );
 //		System.out.println( wrapString( prueba, 10 ) );
 //		System.out.println( wrapString( quitarTabsYSaltosLinea(prueba), 10 ) );
+		
 		// Versión 2
 		String prueba = "Hola\nEsto es un string con tres líneas\ny\tvarios\ttabuladores.";
 		String prueba2 = "Hola#Esto es un string con tres líneas#y|varios|tabuladores.";
