@@ -33,7 +33,7 @@ public class PruebaDebug2 {
 	private static JButton boton = null;  // Atributo para el botón
 	
 	private static void reajusteLayoutNulo() {
-		miJFrame = new JFrame(); miJFrame.setLocation( 2000, 0 );
+		miJFrame = new JFrame(); miJFrame.setLocation( 0, 0 );
 		JPanel panelPrincipal = new JPanel();
 		miJFrame.getContentPane().add( panelPrincipal, BorderLayout.CENTER );  // El panel ocupa siempre toda la ventana y se reescala con ella
 		miJFrame.setVisible( true );
