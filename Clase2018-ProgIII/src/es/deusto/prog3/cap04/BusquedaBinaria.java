@@ -11,6 +11,26 @@ public class BusquedaBinaria {
 		}
 		return array;
 	}
+
+	
+	/** Busca un valor en un vector de enteros ORDENADO de forma ITERATIVA (lineal)
+	 * @param array	Array de valores ordenado
+	 * @param valor	Valor que se busca
+	 * @return	Posición en el que el valor está, -1 si no existe
+	 */
+	public static int buscaEnVectorLineal( int[] array, int valor ) {
+		for (int i=0; i<array.length; i++) {
+			if (array[i]>=valor) {  // Encontrado o pasado
+				contComparaciones++; contComparaciones++;
+				if (array[i]==valor)
+					return i;
+				else
+					return -1;
+			}
+			contComparaciones++;
+		}
+		return -1;
+	}
 	
 	/** Busca un valor en un vector de enteros ORDENADO
 	 * @param array	Array de valores ordenado
@@ -22,8 +42,8 @@ public class BusquedaBinaria {
 		return buscaEnVector( array, valor, 0, array.length-1 );
 		// Posterior
 	}
-		private static int contLlamadas = 0;
-		private static int contComparaciones = 0;
+		private static long contLlamadas = 0;
+		private static long contComparaciones = 0;
 		private static int buscaEnVector( int[] array, int valor, int ini, int fin  ) {
 			contLlamadas++;
 			// System.out.println( "Busco en " + ini + "," + fin );
@@ -86,21 +106,27 @@ public class BusquedaBinaria {
 		
 	public static void main(String[] args) {
 		array = inicializaVector( TAMANYO_ARRAY ); // Inicializa del 1 al n
-		System.out.println( buscaEnVector( array, 10 ) ); // Pos
-		System.out.println( contLlamadas );
+		int val = 10;  // Valor a buscar
+		System.out.println( "Está el valor " + val + buscaEnVector( array, val ) ); // Pos
+		System.out.println( "Llamadas: " + contLlamadas );
 		// Comentar a partir de aquí si no se quiere hacer el test de llamadas y comparaciones
+		System.out.println( "Test de llamadas y comparaciones:");
+		// Test con versión iterativa
+		contLlamadas = 0; contComparaciones = 0;
+		for (int i=0; i<= TAMANYO_ARRAY; i++) buscaEnVectorLineal( array, i );
+		System.out.println( "Versión lineal: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
 		// Test con versión 1
 		contLlamadas = 0; contComparaciones = 0;
 		for (int i=0; i<= TAMANYO_ARRAY; i++) buscaEnVector( array, i );
-		System.out.println( "Versión 1: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
+		System.out.println( "Versión binaria 1: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
 		// Test con versión 2
 		contLlamadas = 0; contComparaciones = 0;
 		for (int i=0; i<= TAMANYO_ARRAY; i++) buscaEnVector2( array, i, 0, TAMANYO_ARRAY-1 );
-		System.out.println( "Versión 2: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
+		System.out.println( "Versión binaria 2: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
 		// Test con versión 1
 		contLlamadas = 0; contComparaciones = 0;
 		for (int i=0; i<= TAMANYO_ARRAY; i++) buscaEnVector3( array, i, 0, TAMANYO_ARRAY-1  );
-		System.out.println( "Versión 3: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
+		System.out.println( "Versión binaria 3: " + contLlamadas + " llamadas y " + contComparaciones + " comparaciones." );
 		// Chequeo de corrección si se quisiera hacer (por ejemplo para test de unidad):
 		// for (int i=0; i<= TAMANYO_ARRAY; i++) { 
 		// 		int b = buscaEnVector3( array, i, 0, TAMANYO_ARRAY-1  ); 
