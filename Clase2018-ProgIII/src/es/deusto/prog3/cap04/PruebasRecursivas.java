@@ -7,7 +7,10 @@ public class PruebasRecursivas {
 		//f(0);
 		System.out.println( factorial(12) );
 		System.out.println( string1_10_1(1) );
+		System.out.println( 1/c(32) );
 	}
+	
+		private static double c(int n) { if (n==1) return 1/4.0; else return c(n-1)/4.0; } 
 	
 	private static void f(int i) {
 		if (i<1000)
