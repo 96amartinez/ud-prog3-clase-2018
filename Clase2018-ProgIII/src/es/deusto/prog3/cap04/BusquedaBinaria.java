@@ -37,6 +37,7 @@ public class BusquedaBinaria {
 	 * @param valor	Valor que se busca
 	 * @return	Posición en el que el valor está, -1 si no existe
 	 */
+	// Método shell (no recursivo)
 	public static int buscaEnVector( int[] array, int valor ) {
 		// Previo
 		return buscaEnVector( array, valor, 0, array.length-1 );
