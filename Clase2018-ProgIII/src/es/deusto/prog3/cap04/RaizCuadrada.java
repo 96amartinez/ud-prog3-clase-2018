@@ -47,7 +47,7 @@ public class RaizCuadrada {
 	public static double raizCuadradaDe_v2( double x, double intento ) {
 		numLlamadas++; // Para información interna
 		System.out.println( "   Llamada " + numLlamadas + " - intento " + intento ); // Para información interna
-		if ( Math.abs(intento*intento - x) < 0.000001 )  // Caso base: el intento es suficientemente bueno
+		if ( Math.abs(intento*intento - x) < 0.000000000001 )  // Caso base: el intento es suficientemente bueno
 			return intento;
 		else {
 			// (2)
