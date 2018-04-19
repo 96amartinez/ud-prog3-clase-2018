@@ -48,7 +48,7 @@ public class OchoDamasResuelto extends JFrame {
 			caso base: no hay solución - false
 	 */
 	public boolean resolverTableroDesdeFila( JLabel[][] tablero, int fila ) {
-		try { Thread.sleep(500); } catch (Exception e) {}
+		try { Thread.sleep(200); } catch (Exception e) {}
 		// TODO Aquí cambiar y hacer:
 		// tablero[0][0].setText( "D" );
 		// esPosicionCorrecta(tablero) );
