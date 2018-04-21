@@ -10,9 +10,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 
 /** Permite una vista interna de las estructuras lineales básicas
+ * cambiable al ir añadiendo elementos
  * @author andoni.eguiluz @ ingenieria.deusto.es
  */
-public class VistaEstructurasLineales {
+public class VistasInternasJavaCollections2 {
 
 	public static void main(String[] args) {
 		JFrame f = new JFrame( "Vista de estructuras" );
