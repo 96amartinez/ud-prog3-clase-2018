@@ -181,9 +181,9 @@ public class PruebasListas {
 	}
 	
 	public static void main(String[] args) {
-		// int numPrueba = 1;  // Ver ArrayList
+		int numPrueba = 1;  // Ver ArrayList
 		// int numPrueba = 2;  // Ver LinkedList
-		int numPrueba = 3;  // Ver ArrayList y LinkedList
+		// int numPrueba = 3;  // Ver ArrayList y LinkedList
 		System.out.println( "Test 1 - mejor ver el segundo que es más aproximado en uso de memoria");
 		pruebaEspacioListas( numPrueba );
 		System.out.println();

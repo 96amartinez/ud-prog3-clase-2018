@@ -201,22 +201,8 @@ public class VentanaBancoDePruebas extends JFrame {
 		// Asignación de componentes a contenedores
 		getContentPane().add( new JScrollPane( tArbol ), BorderLayout.CENTER );
 		// Cálculo de árbol de atributos del objeto
-		if (o!=null) {
-			DefaultMutableTreeNode raizTemporal = new DefaultMutableTreeNode( "" );
-			raizTemporal.add( new DefaultMutableTreeNode( "Calculando..." ) );
-			DefaultTreeModel arbolTemp = new DefaultTreeModel( raizTemporal );
-			tArbol.setModel( arbolTemp );
-			tArbol.repaint();
-			final Object alArbol = o;
-			Thread hilo = new Thread( () -> { 
-				if (atributosAVer==null || atributosAVer.isEmpty())
-					tArbol.setModel( ExploradorObjetos.atributosYValoresToTree( alArbol ) );
-				else 
-					tArbol.setModel( ExploradorObjetos.atributosYValoresToTree( alArbol, atributosAVer ) );
-				tArbol.repaint();
-			} );
-			hilo.start();
-		}
+		setObjeto( o );
+		// Escuchadores
 		KeyListener kl = new KeyAdapter() {
 			boolean pulsadoCtrl = false;
 			@Override
@@ -240,6 +226,28 @@ public class VentanaBancoDePruebas extends JFrame {
 			}
 		};
 		tArbol.addKeyListener( kl );
+	}
+	
+	/** Modifica el objeto de la estructura de la ventana
+	 * @param o	Objeto del cual mostrar la estructura
+	 */
+	public void setObjeto( Object o ) {
+		if (o!=null) {
+			DefaultMutableTreeNode raizTemporal = new DefaultMutableTreeNode( "" );
+			raizTemporal.add( new DefaultMutableTreeNode( "Calculando..." ) );
+			DefaultTreeModel arbolTemp = new DefaultTreeModel( raizTemporal );
+			tArbol.setModel( arbolTemp );
+			tArbol.repaint();
+			final Object alArbol = o;
+			Thread hilo = new Thread( () -> { 
+				if (atributosAVer==null || atributosAVer.isEmpty())
+					tArbol.setModel( ExploradorObjetos.atributosYValoresToTree( alArbol ) );
+				else 
+					tArbol.setModel( ExploradorObjetos.atributosYValoresToTree( alArbol, atributosAVer ) );
+				tArbol.repaint();
+			} );
+			hilo.start();
+		}
 	}
 	
 	public void setProcesos( String[] pruebas, ArrayList<ProcesoProbable> procs ) {
